@@ -1,5 +1,4 @@
-/*
- * Copyright (c) 2013-2014, 2017, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2016,2020 The Linux Foundation. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -11,22 +10,11 @@
  * GNU General Public License for more details.
  */
 
-#ifndef __REGULATOR_CPR_REGULATOR_H__
-#define __REGULATOR_CPR_REGULATOR_H__
+/dts-v1/;
 
-#include <linux/init.h>
+#include "msm8909-qrd-skue.dtsi"
 
-#ifdef CONFIG_REGULATOR_CPR
+/ {
+	qcom,board-id= <0x1000b 0x9>;
+};
 
-int __init cpr_regulator_init(void);
-
-#else
-
-static inline int __init cpr_regulator_init(void)
-{
-	return -ENODEV;
-}
-
-#endif /* CONFIG_REGULATOR_CPR */
-
-#endif /* __REGULATOR_CPR_REGULATOR_H__ */
