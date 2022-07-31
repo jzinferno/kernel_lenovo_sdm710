@@ -329,6 +329,11 @@ $(obj)/%.dtb: $(src)/%.dts FORCE
 
 dtc-tmp = $(subst $(comma),_,$(dot-target).dts.tmp)
 
+# mkbootimg
+#----------------------------------------------------------------------------
+quiet_cmd_mkbootimg = BOOTIMG $@
+cmd_mkbootimg = rm -rf $(obj)/empty && touch $(obj)/empty && python3 $(srctree)/scripts/mkbootimg.py --header_version 0 --os_version 11.0.0 --os_patch_level `date +%Y-%m` --kernel $(filter-out FORCE,$^) --ramdisk $(obj)/empty --pagesize 0x00001000 --base 0x00000000 --kernel_offset 0x00008000 --ramdisk_offset 0x00000000 --second_offset 0x00000000 --tags_offset 0x00000100 --board '' --cmdline 'console=ttyMSM0,115200n8 earlycon=msm_geni_serial,0xA90000 androidboot.hardware=qcom androidboot.console=ttyMSM0 video=vfb:640x400,bpp=32,memsize=3072000 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 service_locator.enable=1 androidboot.configfs=true androidboot.usbcontroller=a600000.dwc3 swiotlb=1 loop.max_part=7 buildvariant=user' --out $@
+
 # mkdtimg
 #----------------------------------------------------------------------------
 quiet_cmd_mkdtimg = DTBOIMG $@

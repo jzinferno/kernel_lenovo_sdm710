@@ -2,4 +2,5 @@ Image
 Image-dtb
 Image.gz
 Image.gz-dtb
+boot.img
 dtbo.img

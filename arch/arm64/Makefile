@@ -129,6 +129,8 @@ endif
 
 KBUILD_DTBS	:= dtbs
 
+KBUILD_BOOT_IMG := boot.img
+
 KBUILD_DTBO_IMG := dtbo.img
 
 ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
@@ -161,6 +163,11 @@ dtbs_install:
 
 Image-dtb Image.gz-dtb: vmlinux scripts dtbs
 	$(Q)$(MAKE) $(build)=$(boot) $(boot)/$@
+
+$(KBUILD_BOOT_IMG): Image.gz-dtb
+	$(Q)$(MAKE) $(build)=$(boot) $(boot)/$@
+
+all: $(KBUILD_BOOT_IMG)
 
 ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
 $(KBUILD_DTBO_IMG): dtbs
