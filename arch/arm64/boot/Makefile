@@ -73,7 +73,7 @@ $(obj)/boot.img: $(obj)/Image.gz-dtb FORCE
 	$(call if_changed,mkbootimg)
 
 $(obj)/dtbo.img: $(DTBO_OBJS) FORCE
-	$(call if_changed,mkdtimg)
+	$(call if_changed,mkdtboimg)
 
 install:
 	$(CONFIG_SHELL) $(srctree)/$(src)/install.sh $(KERNELRELEASE) \

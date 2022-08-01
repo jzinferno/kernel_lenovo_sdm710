@@ -167,14 +167,10 @@ Image-dtb Image.gz-dtb: vmlinux scripts dtbs
 $(KBUILD_BOOT_IMG): Image.gz-dtb
 	$(Q)$(MAKE) $(build)=$(boot) $(boot)/$@
 
-all: $(KBUILD_BOOT_IMG)
-
-ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
 $(KBUILD_DTBO_IMG): dtbs
 	$(Q)$(MAKE) $(build)=$(boot) $(boot)/$@
 
-all: $(KBUILD_DTBO_IMG)
-endif
+all: $(KBUILD_BOOT_IMG) $(KBUILD_DTBO_IMG)
 
 PHONY += vdso_install
 vdso_install:
